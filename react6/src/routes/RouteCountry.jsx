@@ -1,6 +1,6 @@
 import React from "react";
 
-import CountryList from "../components/TodoList/CountryList";
+import CountryList from "../components/CountryList/CountryList";
 
 export default function RouteCountry() {
     return (

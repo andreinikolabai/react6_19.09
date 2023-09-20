@@ -2,7 +2,7 @@ import React from 'react'
 
 import {useNavigate} from 'react-router-dom'
 
-import CountryItem from '../components/TodoItem/CountryItem'
+import CountryItem from '../components/CountryItem/CountryItem'
 
 export default function RouteCountryItem() {
     const navigation = useNavigate();
