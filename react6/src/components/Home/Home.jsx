@@ -35,5 +35,5 @@ export default function Home() {
             <h3><text>Home Component 🏡</text></h3>
             <CountryForm countries={countries} />
         </>
-);
+    );
 }
