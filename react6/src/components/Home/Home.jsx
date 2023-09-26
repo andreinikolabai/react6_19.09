@@ -2,7 +2,7 @@ import React from "react";
 import './style.sass'
 import CountryForm from "./../CountryForm/CountryForm"
 
-const countries = [
+export const countries = [
     {
         flag: `🇺🇦`,
         country: `Ukraine`,

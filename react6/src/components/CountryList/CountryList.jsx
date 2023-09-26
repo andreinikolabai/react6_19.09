@@ -1,21 +1,26 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-import TodoContext from "../../contexts/todoContext";
+export default function CountryList({ countries }) {
+    const [countriesList, setCountriesList] = useState(countries);
 
-import {Link} from 'react-router-dom'
+    const handleDelete = (index) => {
+        const updatedList = [...countriesList];
+        updatedList.splice(index, 1);
+        setCountriesList(updatedList);
+    };
 
-export default function CountryList() {
-    const { state, handleItemDelete } = useContext(TodoContext);
-
-    return state.todo.length ? (
-        <ul>
-            {state.todo.map((item, index) => (
-                <li key={index}>
-                    {item.title}{" "}
-                    <Link to={String(item.id)}>Read more</Link>
-                    <button onClick={() => handleItemDelete(item.id)}>Delete</button>
-                </li>
-            ))}
-        </ul>
-    ) : null;
+    return (
+        <div>
+            <h3>Country List</h3>
+            <ul>
+                {countriesList.map((country, index) => (
+                    <li key={index}>
+                        {country.country} - <Link to={`/countries/${index}`}>Read more</Link>
+                        <button onClick={() => handleDelete(index)}>Delete</button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
 }
