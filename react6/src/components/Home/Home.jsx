@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import './style.sass'
 import CountryForm from "./../CountryForm/CountryForm"
+import CountryList from "./../CountryList/CountryList"
 
 export const countries = [
     {
@@ -30,10 +31,19 @@ export const countries = [
 ];
 
 export default function Home() {
+    const [countriesList, setCountriesList] = useState(countries);
+
+    const handleDelete = (index) => {
+        const updatedList = [...countriesList];
+        updatedList.splice(index, 1);
+        setCountriesList(updatedList);
+    };
+
     return (
         <>
             <h3><text>Home Component 🏡</text></h3>
-            <CountryForm countries={countries} />
+            <CountryForm countries={countriesList} onFormSubmit={handleDelete} />
+            <CountryList countries={countriesList} onDelete={handleDelete} />
         </>
     );
 }
