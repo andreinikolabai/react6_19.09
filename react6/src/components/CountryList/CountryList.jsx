@@ -11,7 +11,9 @@ export default function TodoList() {
                 <li key={item.id}>
                     {item.country}{" "}
                     <Link to={String(item.id)}>Read more</Link>
-                    <button onClick={() => handleItemDelete(item.id)}>Delete</button>
+                    <button onClick={() => {
+                        handleItemDelete(item.id);
+                    }}>Delete</button>
                 </li>
             ))}
         </ul>
