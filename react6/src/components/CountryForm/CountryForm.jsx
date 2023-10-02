@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom';
 
-export default function CountryForm({ capitals, translations }) {
+export default function CountryForm({capitals, translations}) {
     const [selectedCapital, setSelectedCapital] = useState('');
     const [selectedTranslation, setSelectedTranslation] = useState('');
     const navigate = useNavigate();
