@@ -1,8 +1,8 @@
-import {useReducer} from "react";
+import { useReducer } from "react";
 
 const useTodo = () => {
     const INITIAL_STATE = {
-        todo: [
+        countries: [
             {
                 userId: 1,
                 id: 1,
@@ -50,7 +50,7 @@ const useTodo = () => {
             case ACTION_TODO_ITEM_DELETE:
                 return {
                     ...state,
-                    todo: state.todo.filter((item) => item.id !== payload),
+                    countries: state.countries.filter((item) => item.id !== payload),
                 };
             default:
                 return state;

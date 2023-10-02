@@ -7,9 +7,9 @@ import {Link} from 'react-router-dom'
 export default function TodoList() {
     const { state, handleItemDelete } = useContext(TodoContext);
 
-    return state.todo.length ? (
+    return state.countries.length ? (
         <ul>
-            {state.todo.map((item, index) => (
+            {state.countries.map((item, index) => (
                 <li key={index}>
                     {item.title}{" "}
                     <Link to={String(item.id)}>Read more</Link>
