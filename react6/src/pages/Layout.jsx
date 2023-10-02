@@ -5,7 +5,6 @@ import Navigation from "./../components/Navigation/Navigation";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import RouteHome from "./../routes/RouteHome";
-import RouteForm from "./../routes/RouteForm";
 import RouteCountry from "../routes/RouteCountry";
 import RouteCountryItem from "../routes/RouteCountryItem";
 
@@ -25,7 +24,6 @@ export default function Layout() {
                 <TodoContext.Provider value={todo}>
                     <Routes>
                         <Route index path={"/"} element={<RouteHome />}></Route>
-                        <Route index path={"/form"} element={<RouteForm />}></Route>
                         <Route path={"todo"} element={<RouteCountry />}></Route>
                         <Route path={"todo/:id"} element={<RouteCountryItem />}></Route>
                     </Routes>
