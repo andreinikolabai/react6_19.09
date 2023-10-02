@@ -32,7 +32,6 @@ export default function CountryForm({ countries }) {
         <form onSubmit={handleSubmit}>
             <div>
                 <h3>Capital Form Component</h3>
-                <label>Select a capital:</label>
                 <select value={selectedCapital} onChange={handleCapitalChange}>
                     <option value="">Select a capital</option>
                     {countries && countries.map((country) => (
@@ -44,7 +43,6 @@ export default function CountryForm({ countries }) {
             </div>
                 <div>
                     <h4>Select Translation Language:</h4>
-                    <label>Select a translation:</label>
                     <select value={selectedTranslation} onChange={handleTranslationChange}>
                         <option value="">Select a translation</option>
                         {selectedCapital && countries.find((country) => country.capital === selectedCapital).translations.map((translation) => (
