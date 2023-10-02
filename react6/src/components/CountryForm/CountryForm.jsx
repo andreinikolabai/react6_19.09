@@ -1,52 +1,83 @@
-import React, { useState } from "react";
-import './style.sass'
+import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import TodoContext from "../../contexts/todoContext";
 
-export default function CountryForm({ countries, onFormSubmit }) {
-    const [selectedCapital, setSelectedCapital] = useState(countries[0].capital);
-    const [selectedTranslation, setSelectedTranslation] = useState(countries[0].translations[0]);
-    const selectedCountry = countries.find((country) => country.capital === selectedCapital);
-    const selectedCountryName = selectedCountry ? selectedCountry.country : "";
+export default function CountryForm() {
+    const { state } = useContext(TodoContext);
+    const [selectedCapital, setSelectedCapital] = useState("");
+    const [selectedTranslation, setSelectedTranslation] = useState("");
+    const navigate = useNavigate();
 
-    const handleCapitalChange = (e) => {
-        setSelectedCapital(e.target.value);
+    // Функція для генерації опцій для вибору столиці
+    const renderCapitalOptions = () => {
+        return state.todo.map((country) => (
+            <option key={country.id} value={country.capital}>
+                {country.flag} {country.capital}
+            </option>
+        ));
     };
 
-    const handleTranslationChange = (e) => {
-        setSelectedTranslation(e.target.value);
+    // Функція для генерації опцій для вибору мови перекладу
+    const renderTranslationOptions = () => {
+        const selectedCountry = state.todo.find(
+            (country) => country.capital === selectedCapital
+        );
+        if (selectedCountry) {
+            return selectedCountry.translations.map((translation) => (
+                <option key={translation} value={translation}>
+                    {translation}
+                </option>
+            ));
+        }
+        return null;
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onFormSubmit(selectedCapital, selectedTranslation);
+        if (selectedCapital && selectedTranslation) {
+            const selectedCountry = state.todo.find(
+                (country) => country.capital === selectedCapital
+            );
+            navigate(
+                `/countries/${selectedCountry.country}?translation=${selectedTranslation}`
+            );
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit}>
-            <div>
-                <h3>Capital Form Component</h3>
-                <label htmlFor="capitalSelect"></label>
-                <h4>Select Country Capital:</h4>
-                <select id="capitalSelect" onChange={handleCapitalChange} value={selectedCapital}>
-                    {countries.map((country, index) => (
-                        <option key={index} value={country.capital}>
-                            {`${country.flag} ${country.capital}`}
-                        </option>
-                    ))}
-                </select>
-            </div>
-            <div>
-                <label htmlFor="translationSelect"></label>
-                <h4>Select Translation Language:</h4>
-                <select id="translationSelect" onChange={handleTranslationChange} value={selectedTranslation}>
-                    {selectedCountry &&
-                        selectedCountry.translations.map((translation, index) => (
-                            <option key={index} value={translation}>
-                                {translation}
-                            </option>
-                        ))}
-                </select>
-            </div>
-            <button type="submit">Read more about {selectedCountryName}</button>
-        </form>
+        <div>
+            <h3>Country Form Component</h3>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="capitalSelect">Select a capital:</label>
+                    <select
+                        id="capitalSelect"
+                        value={selectedCapital}
+                        onChange={(e) => setSelectedCapital(e.target.value)}
+                    >
+                        <option value="">Select a capital</option>
+                        {renderCapitalOptions()}
+                    </select>
+                </div>
+                {selectedCapital && (
+                    <div>
+                        <label htmlFor="translationSelect">Select a translation:</label>
+                        <select
+                            id="translationSelect"
+                            value={selectedTranslation}
+                            onChange={(e) => setSelectedTranslation(e.target.value)}
+                        >
+                            <option value="">Select a translation</option>
+                            {renderTranslationOptions()}
+                        </select>
+                    </div>
+                )}
+                {selectedCapital && selectedTranslation && (
+                    <div>
+                        <button> Read more about {selectedCapital} </button>
+                    </div>
+                )}
+            </form>
+        </div>
     );
 }

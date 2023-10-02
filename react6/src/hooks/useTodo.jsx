@@ -38,10 +38,8 @@ const useTodo = () => {
         ],
     };
 
-    // action types
     const ACTION_TODO_ITEM_DELETE = `ACTION_TODO_ITEM_DELETE`;
 
-    // action
     const actionTodoItemDelete = (todoItemId) => ({
         type: ACTION_TODO_ITEM_DELETE,
         payload: todoItemId,
