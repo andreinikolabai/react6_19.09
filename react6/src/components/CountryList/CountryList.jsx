@@ -7,11 +7,11 @@ export default function TodoList() {
     const { state, handleItemDelete } = useContext(TodoContext);
 
     return state.countries.length ? (
-        <div>
+        <div className="todo-list">
             <h3>
                 <text>Countries List</text>
             </h3>
-            <ul className="todo-list">
+            <ul>
                 <div>
                     {state.countries.map((item, index) => (
                         <li key={item.id}>
