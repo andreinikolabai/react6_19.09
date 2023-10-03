@@ -12,14 +12,11 @@ export default function CountryForm() {
 
     useEffect(() => {
         if (todo.state.countries && todo.state.countries.length > 0) {
-            // Встановлюємо обрану столицю за замовчуванням
             setSelectedCapital(todo.state.countries[0].capital);
 
-            // Знаходимо обрану країну за столицею і встановлюємо її
             const defaultSelectedCountry = todo.state.countries.find((country) => country.capital === todo.state.countries[0].capital);
             setSelectedCountry(defaultSelectedCountry);
 
-            // Встановлюємо обрану мову за замовчуванням
             setSelectedTranslation(defaultSelectedCountry.translations[0]);
         }
     }, [todo.state.countries]);
