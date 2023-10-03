@@ -6,10 +6,25 @@ const useTodo = () => {
             {
                 userId: 1,
                 id: 1,
-                flag: `🇺🇦`,
-                country: `Ukraine`,
-                capital: 'Kyiv',
-                translations: ['ara', 'bre', 'ces'],
+                Name: [
+                    {
+                        Official: 'Ukraine',
+                        Common: 'Україна'
+                    }
+                    ],
+                Currencies: [
+                    {
+                        Name: 'Ukrainian hryvnia',
+                        Symbol: '₴'
+                    }
+                ],
+                Capital: 'Kyiv',
+                Region: 'Europe',
+                Subregion: 'Eastern Europe',
+                Languages: 'Ukr',
+                Flag: `🇺🇦`,
+                // country: `Ukraine`,
+                Translations: ['ara', 'bre', 'ces'],
             },
             {
                 userId: 2,

@@ -8,10 +8,14 @@ export default function CountryItem() {
     const { state, handleItemDelete } = useContext(TodoContext);
 
     const [countryData, setCountryData] = useState(null);
+    const [countryName, setCountryName] = useState(""); // Додайте стейт для збереження назви країни
 
     useEffect(() => {
         const selectedCountry = state.countries.find(item => item.id === +id);
-        setCountryData(selectedCountry);
+        if (selectedCountry) {
+            setCountryData(selectedCountry);
+            setCountryName(selectedCountry.country); // Збереження назви країни в стейт
+        }
     }, [id, state.countries]);
 
     const handleDelete = (id) => {
@@ -21,6 +25,7 @@ export default function CountryItem() {
 
     return countryData ? (
         <div>
+            <h2>{countryName}</h2>
             <ul>
                 {Object.keys(countryData).map((key, index) => (
                     <li key={index}>
