@@ -6,20 +6,29 @@ import TodoContext from '../../contexts/todoContext';
 export default function CountryForm() {
     const [selectedCapital, setSelectedCapital] = useState('');
     const [selectedTranslation, setSelectedTranslation] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState(null);
     const navigate = useNavigate();
     const todo = useContext(TodoContext);
 
-    // Установите начальные значения для selectedCapital и selectedTranslation
     useEffect(() => {
         if (todo.state.countries && todo.state.countries.length > 0) {
+            // Встановлюємо обрану столицю за замовчуванням
             setSelectedCapital(todo.state.countries[0].capital);
-            setSelectedTranslation(todo.state.countries[0].translations[0]);
+
+            // Знаходимо обрану країну за столицею і встановлюємо її
+            const defaultSelectedCountry = todo.state.countries.find((country) => country.capital === todo.state.countries[0].capital);
+            setSelectedCountry(defaultSelectedCountry);
+
+            // Встановлюємо обрану мову за замовчуванням
+            setSelectedTranslation(defaultSelectedCountry.translations[0]);
         }
     }, [todo.state.countries]);
 
     const handleCapitalChange = (event) => {
         const selectedCapital = event.target.value;
         setSelectedCapital(selectedCapital);
+        const selectedCountryObj = todo.state.countries.find((country) => country.capital === selectedCapital);
+        setSelectedCountry(selectedCountryObj);
     };
 
     const handleTranslationChange = (event) => {
@@ -29,9 +38,6 @@ export default function CountryForm() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        const selectedCountry = todo.state.countries.find(
-            (country) => country.capital === selectedCapital
-        );
 
         if (selectedCountry) {
             navigate(`/countries/${selectedCountry.country}?translation=${selectedTranslation}`);
@@ -54,7 +60,7 @@ export default function CountryForm() {
             <div>
                 <h4>Select Translation Language:</h4>
                 <select value={selectedTranslation} onChange={handleTranslationChange}>
-                    {selectedCapital && todo.state.countries.find((country) => country.capital === selectedCapital).translations.map((translation) => (
+                    {selectedCountry && selectedCountry.translations.map((translation) => (
                         <option key={translation} value={translation}>
                             {translation}
                         </option>
@@ -62,7 +68,9 @@ export default function CountryForm() {
                 </select>
             </div>
             <div>
-                <button>Read more about {selectedCapital}</button>
+                <button>
+                    Read more about {selectedCountry ? selectedCountry.country : 'the Country'}
+                </button>
             </div>
         </form>
     );
