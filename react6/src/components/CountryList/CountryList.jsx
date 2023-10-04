@@ -15,7 +15,7 @@ export default function TodoList() {
                 <div>
                     {state.countries.map((item, index) => (
                         <li key={item.id}>
-                            {item.country}{" "}
+                            {item.Country}{" "}
                             <Link to={String(item.id)}>Read more</Link>
                             <button onClick={() => {
                                 handleItemDelete(item.id);

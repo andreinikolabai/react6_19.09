@@ -12,19 +12,19 @@ export default function CountryForm() {
 
     useEffect(() => {
         if (todo.state.countries && todo.state.countries.length > 0) {
-            setSelectedCapital(todo.state.countries[0].capital);
+            setSelectedCapital(todo.state.countries[0].Capital);
 
-            const defaultSelectedCountry = todo.state.countries.find((country) => country.capital === todo.state.countries[0].capital);
+            const defaultSelectedCountry = todo.state.countries.find((country) => country.Capital === todo.state.countries[0].Capital);
             setSelectedCountry(defaultSelectedCountry);
 
-            setSelectedTranslation(defaultSelectedCountry.translations[0]);
+            setSelectedTranslation(defaultSelectedCountry.Translations[0]);
         }
     }, [todo.state.countries]);
 
     const handleCapitalChange = (event) => {
         const selectedCapital = event.target.value;
         setSelectedCapital(selectedCapital);
-        const selectedCountryObj = todo.state.countries.find((country) => country.capital === selectedCapital);
+        const selectedCountryObj = todo.state.countries.find((country) => country.Capital === selectedCapital);
         setSelectedCountry(selectedCountryObj);
     };
 
@@ -37,7 +37,7 @@ export default function CountryForm() {
         event.preventDefault();
 
         if (selectedCountry) {
-            navigate(`/countries/${selectedCountry.country}?translation=${selectedTranslation}`);
+            navigate(`/countries/${selectedCountry.Country}?translation=${selectedTranslation}`);
         }
     };
 
@@ -48,8 +48,8 @@ export default function CountryForm() {
                 <h4>Select Capital</h4>
                 <select value={selectedCapital} onChange={handleCapitalChange}>
                     {todo.state.countries && todo.state.countries.map((country) => (
-                        <option key={country.id} value={country.capital}>
-                            {`${country.flag} ${country.capital}`}
+                        <option key={country.id} value={country.Capital}>
+                            {`${country.Flag} ${country.Capital}`}
                         </option>
                     ))}
                 </select>
@@ -57,16 +57,16 @@ export default function CountryForm() {
             <div>
                 <h4>Select Translation Language:</h4>
                 <select value={selectedTranslation} onChange={handleTranslationChange}>
-                    {selectedCountry && selectedCountry.translations.map((translation) => (
-                        <option key={translation} value={translation}>
-                            {translation}
+                    {selectedCountry && selectedCountry.Translations.map((Translation) => (
+                        <option key={Translation} value={Translation}>
+                            {Translation}
                         </option>
                     ))}
                 </select>
             </div>
             <div>
                 <button>
-                    Read more about {selectedCountry ? selectedCountry.country : 'the Country'}
+                    Read more about {selectedCountry ? selectedCountry.Country : 'the Country'}
                 </button>
             </div>
         </form>
