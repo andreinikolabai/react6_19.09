@@ -24,74 +24,76 @@ export default function CountryItem() {
             <h3>{countryData.Country}</h3>
             <ul>
                 {Object.keys(countryData).map((key) => (
-                    <li key={key}>
-                        {key === 'Name' ? (
-                            <div>
-                                {key}:
-                                <ul>
-                                    {countryData[key].map((name, nameIndex) => (
-                                        <li key={nameIndex}>
-                                            <li>
-                                                Official: '{name.Official}';
-                                            </li>
-                                            <li>
-                                                Common: '{name.Common}';
-                                            </li>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : key === 'Currencies' ? (
-                            <div>
-                                {key}:
-                                <ul>
-                                    {Object.keys(countryData[key]).map((currencyKey, currencyIndex) => (
-                                        <li key={currencyIndex}>
-                                            {currencyKey}:
-                                            <ul>
+                    key !== 'id' && key !== 'userId' && key !== 'Country' ? (
+                        <li key={key}>
+                            {key === 'Name' ? (
+                                <div>
+                                    {key}:
+                                    <ul>
+                                        {countryData[key].map((name, nameIndex) => (
+                                            <li key={nameIndex}>
                                                 <li>
-                                                    Name: '{countryData[key][currencyKey].Name}';
+                                                    Official: '{name.Official}';
                                                 </li>
                                                 <li>
-                                                    Symbol: '{countryData[key][currencyKey].Symbol}';
+                                                    Common: '{name.Common}';
                                                 </li>
-                                            </ul>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : key === "Languages" ? (
-                            <div>
-                                {key}:
-                                <ul>
-                                    {Object.keys(countryData[key]).map((languageKey) => (
-                                        <li key={languageKey}>
-                                            {`${languageKey}: '${countryData[key][languageKey]}'`}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : key === "Translations" ? (
-                            <div>
-                                {key}:
-                                <ul>
-                                    {Object.keys(countryData[key]).map((translationKey, translationIndex) => (
-                                        <li key={translationIndex}>
-                                            {translationKey}:
-                                            <ul>
-                                                <li>Official: '{countryData[key][translationKey].Official}';</li>
-                                                <li>Common: '{countryData[key][translationKey].Common}';</li>
-                                            </ul>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        ) : (
-                            <div>
-                                {key}: {String(countryData[key])}
-                            </div>
-                        )}
-                    </li>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : key === 'Currencies' ? (
+                                <div>
+                                    {key}:
+                                    <ul>
+                                        {Object.keys(countryData[key]).map((currencyKey, currencyIndex) => (
+                                            <li key={currencyIndex}>
+                                                {currencyKey}:
+                                                <ul>
+                                                    <li>
+                                                        Name: '{countryData[key][currencyKey].Name}';
+                                                    </li>
+                                                    <li>
+                                                        Symbol: '{countryData[key][currencyKey].Symbol}';
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : key === "Languages" ? (
+                                <div>
+                                    {key}:
+                                    <ul>
+                                        {Object.keys(countryData[key]).map((languageKey) => (
+                                            <li key={languageKey}>
+                                                {`${languageKey}: '${countryData[key][languageKey]}'`}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : key === "Translations" ? (
+                                <div>
+                                    {key}:
+                                    <ul>
+                                        {Object.keys(countryData[key]).map((translationKey, translationIndex) => (
+                                            <li key={translationIndex}>
+                                                {translationKey}:
+                                                <ul>
+                                                    <li>Official: '{countryData[key][translationKey].Official}';</li>
+                                                    <li>Common: '{countryData[key][translationKey].Common}';</li>
+                                                </ul>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ) : (
+                                <div>
+                                    {key}: {String(countryData[key])}
+                                </div>
+                            )}
+                        </li>
+                    ) : null
                 ))}
             </ul>
             <button onClick={() => handleDelete(countryData.id)}>Delete item</button>
