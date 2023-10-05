@@ -60,15 +60,28 @@ export default function CountryItem() {
                                     ))}
                                 </ul>
                             </div>
-                        ) : key === 'Languages' ? (
+                        ) : key === "Languages" ? (
                             <div>
                                 {key}:
                                 <ul>
-                                    {Object.values(countryData[key]).map((language, languageIndex) => (
-                                        <li key={languageIndex}>
-                                            <div>
-                                                Ukr: '{language.Ukr}';
-                                            </div>
+                                    {Object.keys(countryData[key]).map((languageKey) => (
+                                        <li key={languageKey}>
+                                            {`${languageKey}: '${countryData[key][languageKey]}'`}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ) : key === "Translations" ? (
+                            <div>
+                                {key}:
+                                <ul>
+                                    {Object.keys(countryData[key]).map((translationKey, translationIndex) => (
+                                        <li key={translationIndex}>
+                                            {translationKey}:
+                                            <ul>
+                                                <li>Official: '{countryData[key][translationKey].Official}';</li>
+                                                <li>Common: '{countryData[key][translationKey].Common}';</li>
+                                            </ul>
                                         </li>
                                     ))}
                                 </ul>

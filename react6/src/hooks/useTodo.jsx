@@ -22,27 +22,24 @@ const useTodo = () => {
                 Capital: 'Kyiv',
                 Region: 'Europe',
                 Subregion: 'Eastern Europe',
-                Languages: [
-                    {
-                        Ukr: 'Ukrainian',
-                    },
-                ],
+                Languages: {
+                    Ukr: "Ukrainian",
+                },
                 Flag: `🇺🇦`,
-                Translations: ['ara', 'bre', 'ces'],
-                // Translations: {
-                //     ara: {
-                //         Official: 'أوكرانيا',
-                //         Common: 'أوكرانيا',
-                //     },
-                //     bre: {
-                //         Official: 'Ukraina',
-                //         Common: 'Ukraina',
-                //     },
-                //     ces: {
-                //         Official: 'Ukrajina',
-                //         Common: 'Ukrajina',
-                //     },
-                // },
+                Translations: {
+                    ara: {
+                        Official: 'أوكرانيا',
+                        Common: 'أوكرانيا',
+                    },
+                    bre: {
+                        Official: 'Ukraina',
+                        Common: 'Ukraina',
+                    },
+                    ces: {
+                        Official: 'Ukrajina',
+                        Common: 'Ukrajina',
+                    },
+                },
             },
             {
                 userId: 2,
@@ -63,29 +60,26 @@ const useTodo = () => {
                 Region: 'Europe',
                 Subregion: 'Nothern Europe',
                 Capital: 'Oslo',
-                Languages: [
-                    {
-                        Nno: 'Norwgian Nynorsk',
-                        Nob: 'Norwgian Bokmai',
-                        Smi: 'Sami',
-                    },
-                ],
+                Languages: {
+                    Nno: 'Norwgian Nynorsk',
+                    Nob: 'Norwgian Bokmai',
+                    Smi: 'Sami',
+                },
                 Flag: `🇳🇴`,
-                Translations: ['fra', 'hrv', 'hun'],
-                // Translations: {
-                //     fra: {
-                //         Official: 'أRoyaume de Norvège',
-                //         Common: 'Norvège',
-                //     },
-                //     hrv: {
-                //         Official: 'Kraljevina Norveška',
-                //         Common: 'Norveška',
-                //     },
-                //     hun: {
-                //         Official: 'Norvég Királyság',
-                //         Common: 'Norvégia',
-                //     },
-                // },
+                Translations: {
+                    fra: {
+                        Official: 'أRoyaume de Norvège',
+                        Common: 'Norvège',
+                    },
+                    hrv: {
+                        Official: 'Kraljevina Norveška',
+                        Common: 'Norveška',
+                    },
+                    hun: {
+                        Official: 'Norvég Királyság',
+                        Common: 'Norvégia',
+                    },
+                },
             },
             {
                 userId: 3,
@@ -107,31 +101,29 @@ const useTodo = () => {
                 Subregion: 'North America',
                 Flag: `🇨🇦`,
                 Capital: 'Ottawa',
-                Languages: [
-                    {
+
+                Languages: {
                         Eng: 'English',
                         Fra: 'French',
                     },
-                ],
-                Translations: ['ita', 'jpn', 'kor', 'nid'],
-                // Translations: {
-                //     ita: {
-                //         Official: 'Canada',
-                //         Common: 'Canada',
-                //     },
-                //     jpn: {
-                //         Official: 'カナダ',
-                //         Common: 'カナダ',
-                //     },
-                //     kor: {
-                //         Official: '캐나다',
-                //         Common: '캐나다',
-                //     },
-                //     nid: {
-                //         Official: 'Canada',
-                //         Common: 'Canada',
-                //     },
-                // },
+                Translations: {
+                    ita: {
+                        Official: 'Canada',
+                        Common: 'Canada',
+                    },
+                    jpn: {
+                        Official: 'カナダ',
+                        Common: 'カナダ',
+                    },
+                    kor: {
+                        Official: '캐나다',
+                        Common: '캐나다',
+                    },
+                    nid: {
+                        Official: 'Canada',
+                        Common: 'Canada',
+                    },
+                },
             },
             {
                 userId: 4,
@@ -152,33 +144,30 @@ const useTodo = () => {
                 Capital: 'Port Moresby',
                 Region: 'Oceania',
                 Subregion: 'Melanesia',
-                Languages: [
-                    {
+                Languages: {
                         Eng: 'English',
                         Hmo: 'Hiri Motu',
                         Tpi: 'Tok Pisin',
                     },
-                ],
                 Flag: `🇵🇬`,
-                Translations: ['hun', 'ita', 'por', 'sik'],
-                // Translations: {
-                //     hun: {
-                //         Official: 'Független Pápua Új-Guinea állam',
-                //         Common: 'Pápua Új-Guinea',
-                //     },
-                //     ita: {
-                //         Official: 'Stato Indipendente di Papua Nuova Guinea',
-                //         Common: 'Papua Nuova Guinea',
-                //     },
-                //     por: {
-                //         Official: 'Estado Independente de Papua Nova Guiné',
-                //         Common: 'Papua Nova Guiné',
-                //     },
-                //     sik: {
-                //         Official: 'Jimbo Huru la Papua New Guinea',
-                //         Common: 'Papua Guinea Mpya',
-                //     },
-                // },
+                Translations: {
+                    hun: {
+                        Official: 'Független Pápua Új-Guinea állam',
+                        Common: 'Pápua Új-Guinea',
+                    },
+                    ita: {
+                        Official: 'Stato Indipendente di Papua Nuova Guinea',
+                        Common: 'Papua Nuova Guinea',
+                    },
+                    por: {
+                        Official: 'Estado Independente de Papua Nova Guiné',
+                        Common: 'Papua Nova Guiné',
+                    },
+                    sik: {
+                        Official: 'Jimbo Huru la Papua New Guinea',
+                        Common: 'Papua Guinea Mpya',
+                    },
+                },
             },
         ],
     };

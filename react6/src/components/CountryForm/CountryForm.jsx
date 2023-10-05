@@ -1,30 +1,30 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.sass';
 import { useNavigate } from 'react-router-dom';
-import TodoContext from '../../contexts/todoContext';
+import useTodo from '../../hooks/useTodo'; // Замініть "путь-до-useTodo" на відповідний шлях до вашого файлу useTodo.jsx
 
 export default function CountryForm() {
     const [selectedCapital, setSelectedCapital] = useState('');
     const [selectedTranslation, setSelectedTranslation] = useState('');
     const [selectedCountry, setSelectedCountry] = useState(null);
     const navigate = useNavigate();
-    const todo = useContext(TodoContext);
+    const { state, handleItemDelete } = useTodo(); // Використовуйте useTodo для отримання стану і функції handleItemDelete
 
     useEffect(() => {
-        if (todo.state.countries && todo.state.countries.length > 0) {
-            setSelectedCapital(todo.state.countries[0].Capital);
+        if (state.countries && state.countries.length > 0) {
+            setSelectedCapital(state.countries[0].Capital);
 
-            const defaultSelectedCountry = todo.state.countries.find((country) => country.Capital === todo.state.countries[0].Capital);
+            const defaultSelectedCountry = state.countries.find((country) => country.Capital === state.countries[0].Capital);
             setSelectedCountry(defaultSelectedCountry);
 
             setSelectedTranslation(defaultSelectedCountry.Translations[0]);
         }
-    }, [todo.state.countries]);
+    }, [state.countries]);
 
     const handleCapitalChange = (event) => {
         const selectedCapital = event.target.value;
         setSelectedCapital(selectedCapital);
-        const selectedCountryObj = todo.state.countries.find((country) => country.Capital === selectedCapital);
+        const selectedCountryObj = state.countries.find((country) => country.Capital === selectedCapital);
         setSelectedCountry(selectedCountryObj);
     };
 
@@ -47,7 +47,7 @@ export default function CountryForm() {
                 <h3>Capital Form Component</h3>
                 <h4>Select Capital</h4>
                 <select value={selectedCapital} onChange={handleCapitalChange}>
-                    {todo.state.countries && todo.state.countries.map((country) => (
+                    {state.countries && state.countries.map((country) => (
                         <option key={country.id} value={country.Capital}>
                             {`${country.Flag} ${country.Capital}`}
                         </option>
@@ -57,9 +57,9 @@ export default function CountryForm() {
             <div>
                 <h4>Select Translation Language:</h4>
                 <select value={selectedTranslation} onChange={handleTranslationChange}>
-                    {selectedCountry && selectedCountry.Translations.map((Translation) => (
-                        <option key={Translation} value={Translation}>
-                            {Translation}
+                    {selectedCountry && Object.keys(selectedCountry.Translations).map((key) => (
+                        <option key={key} value={key}>
+                            {key}
                         </option>
                     ))}
                 </select>
