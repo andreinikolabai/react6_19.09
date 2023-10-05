@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './style.sass';
 import { useNavigate } from 'react-router-dom';
-import useTodo from '../../hooks/useTodo'; // Замініть "путь-до-useTodo" на відповідний шлях до вашого файлу useTodo.jsx
+import useTodo from '../../hooks/useTodo';
 
 export default function CountryForm() {
     const [selectedCapital, setSelectedCapital] = useState('');
     const [selectedTranslation, setSelectedTranslation] = useState('');
     const [selectedCountry, setSelectedCountry] = useState(null);
     const navigate = useNavigate();
-    const { state, handleItemDelete } = useTodo(); // Використовуйте useTodo для отримання стану і функції handleItemDelete
+    const { state, handleItemDelete } = useTodo();
 
     useEffect(() => {
         if (state.countries && state.countries.length > 0) {
