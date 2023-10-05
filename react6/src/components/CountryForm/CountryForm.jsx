@@ -1,23 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './style.sass';
 import { useNavigate } from 'react-router-dom';
-import useTodo from '../../hooks/useTodo';
+import TodoContext from '../../contexts/todoContext';
 
 export default function CountryForm() {
     const [selectedCapital, setSelectedCapital] = useState('');
     const [selectedTranslation, setSelectedTranslation] = useState('');
     const [selectedCountry, setSelectedCountry] = useState(null);
     const navigate = useNavigate();
-    const { state, handleItemDelete } = useTodo();
+    const { state } = useContext(TodoContext);
 
     useEffect(() => {
         if (state.countries && state.countries.length > 0) {
             setSelectedCapital(state.countries[0].Capital);
-
-            const defaultSelectedCountry = state.countries.find((country) => country.Capital === state.countries[0].Capital);
-            setSelectedCountry(defaultSelectedCountry);
-
-            setSelectedTranslation(defaultSelectedCountry.Translations[0]);
+            setSelectedCountry(state.countries.find((country) => country.Capital === state.countries[0].Capital));
         }
     }, [state.countries]);
 
