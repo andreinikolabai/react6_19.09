@@ -2,16 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TodoContext from "./../../contexts/todoContext";
 
-export default function CountryItem() {
+export default function CountryItem(props) {
     const navigation = useNavigate();
-    const { id } = useParams();
+    const { id } = props;
     const { state, handleItemDelete } = useContext(TodoContext);
 
     const [countryData, setCountryData] = useState(null);
+    const [selectedTranslation, setSelectedTranslation] = useState('');
 
     useEffect(() => {
         const selectedCountry = state.countries.find(item => item.id === +id);
         setCountryData(selectedCountry);
+        setSelectedTranslation(new URLSearchParams(window.location.search).get('translation') || 'ara');
     }, [id, state.countries]);
 
     const handleDelete = (id) => {
@@ -19,9 +21,17 @@ export default function CountryItem() {
         navigation(`/todo`);
     };
 
-    return countryData ? (
+    if (!countryData) {
+        return null; // Повернути нуль, якщо countryData ще не завантажено
+    }
+
+    const translatedName = countryData.Translations[selectedTranslation]
+        ? countryData.Translations[selectedTranslation].Common
+        : countryData.Name[0].Common;
+
+    return (
         <div>
-            <h3>{countryData.Country}</h3>
+            <h3>{translatedName}</h3>
             <ul>
                 {Object.keys(countryData).map((key) => (
                     key !== 'id' && key !== 'userId' && key !== 'Country' ? (
@@ -32,12 +42,14 @@ export default function CountryItem() {
                                     <ul>
                                         {countryData[key].map((name, nameIndex) => (
                                             <li key={nameIndex}>
-                                                <li>
-                                                    Official: '{name.Official}';
-                                                </li>
-                                                <li>
-                                                    Common: '{name.Common}';
-                                                </li>
+                                                <ul>
+                                                    <li>
+                                                        Official: '{name.Official}';
+                                                    </li>
+                                                    <li>
+                                                        Common: '{name.Common}';
+                                                    </li>
+                                                </ul>
                                             </li>
                                         ))}
                                     </ul>
@@ -98,5 +110,5 @@ export default function CountryItem() {
             </ul>
             <button onClick={() => handleDelete(countryData.id)}>Delete item</button>
         </div>
-    ) : null;
+    );
 }
