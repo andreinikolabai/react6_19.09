@@ -18,7 +18,7 @@ export default function CountryList() {
                     <li key={item.id}>
                         {item.Country}{" "}
                         <Link to={`${String(item.id)}?translation=eng`}>Read more</Link>
-                        <button onClick={() => handleItemDelete(item.id)}>Delete</button>
+                        <button onClick={() => handleDelete(item.id)}>Delete</button>
                     </li>
                 ))}
             </ul>
