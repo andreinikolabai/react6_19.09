@@ -9,7 +9,7 @@ export default function RouteCountryItem() {
     return (
         <>
             <CountryItem id={id} />
-            <hr></hr>
+            <br></br>
             <button onClick={() => navigation(`/todo`)}>Back to Countries</button>
         </>
     );

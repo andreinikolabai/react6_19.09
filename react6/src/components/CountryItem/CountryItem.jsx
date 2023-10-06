@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TodoContext from "./../../contexts/todoContext";
+import './style.sass';
 
 export default function CountryItem(props) {
     const navigation = useNavigate();
@@ -30,7 +31,7 @@ export default function CountryItem(props) {
         : countryData.Name[0].Official;
 
     return (
-        <div>
+        <div className="item-list">
             <h3>{officialName}</h3>
             <ul>
                 {Object.keys(countryData).map((key) => (
@@ -42,14 +43,12 @@ export default function CountryItem(props) {
                                     <ul>
                                         {countryData[key].map((name, nameIndex) => (
                                             <li key={nameIndex}>
-                                                <ul>
                                                     <li>
                                                         Official: '{name.Official}';
                                                     </li>
                                                     <li>
                                                         Common: '{name.Common}';
                                                     </li>
-                                                </ul>
                                             </li>
                                         ))}
                                     </ul>
