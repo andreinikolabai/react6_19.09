@@ -17,7 +17,7 @@ export default function CountryList() {
                 {state.countries.map((item) => (
                     <li key={item.id}>
                         {item.Country}{" "}
-                        <Link to={String(item.id)}>Read more</Link>
+                        <Link to={`${String(item.id)}?translation=eng`}>Read more</Link>
                         <button onClick={() => handleDelete(item.id)}>Delete</button>
                     </li>
                 ))}

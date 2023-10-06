@@ -4,7 +4,7 @@ import TodoContext from "./../../contexts/todoContext";
 
 export default function CountryItem(props) {
     const navigation = useNavigate();
-    const { id } = props;
+    const { id } = useParams();
     const { state, handleItemDelete } = useContext(TodoContext);
 
     const [countryData, setCountryData] = useState(null);
@@ -22,16 +22,16 @@ export default function CountryItem(props) {
     };
 
     if (!countryData) {
-        return null; // Повернути нуль, якщо countryData ще не завантажено
+        return null;
     }
 
-    const translatedName = countryData.Translations[selectedTranslation]
-        ? countryData.Translations[selectedTranslation].Common
-        : countryData.Name[0].Common;
+    const officialName = countryData.Translations[selectedTranslation]
+        ? countryData.Translations[selectedTranslation].Official
+        : countryData.Name[0].Official;
 
     return (
         <div>
-            <h3>{translatedName}</h3>
+            <h3>{officialName}</h3>
             <ul>
                 {Object.keys(countryData).map((key) => (
                     key !== 'id' && key !== 'userId' && key !== 'Country' ? (
