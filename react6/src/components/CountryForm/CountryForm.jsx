@@ -14,7 +14,7 @@ export default function CountryForm() {
         if (state.countries && state.countries.length > 0) {
             setSelectedCapital(state.countries[0].Capital);
             setSelectedCountry(state.countries.find((country) => country.Capital === state.countries[0].Capital));
-            setSelectedTranslation('ara'); // Задаємо значення за замовчуванням для translation
+            setSelectedTranslation('ara');
         }
     }, [state.countries]);
 
